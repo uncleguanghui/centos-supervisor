@@ -56,3 +56,7 @@ systemctl start supervisord.service
 # systemctl reload supervisord.service
 # 其他命令2：关闭进程
 # systemctl stop supervisord.service
+
+IP=$(hostname -I | awk '{ print $1 }')
+echo "All done!"
+echo "Supervisor URL: $IP:8010"
