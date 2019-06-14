@@ -1,6 +1,6 @@
 # 快速部署Supervisor
 
-本项目用于在Centos7+快速部署supervisor
+本项目用于以`root`身份在Centos快速部署supervisor
 
 # 上手指南
 
@@ -54,6 +54,14 @@ supervisor配置文件通常命名为`supervisord.conf`。它被 supervisord 和
 
 ```
 sh deploy.sh
+```
+
+# 其他命令
+
+## 关闭supervisor
+
+```
+systemctl stop supervisord.service
 ```
 
 ## 重启supervisor
