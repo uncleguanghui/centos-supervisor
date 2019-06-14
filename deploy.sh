@@ -26,12 +26,12 @@ done
 # ########################## 安装并配置 ##########################
 
 # 安装
-if [ ! -f "/bin/supervisord"]; then
+if [ ! -f "/bin/supervisord" ]; then
     pip install supervisor
 fi
 
 # 创建配置目录，并修改权限为767（方便其他用户往里添加）
-if [ ! -f "$dir_conf"]; then
+if [ ! -f "$dir_conf" ]; then
     mkdir -p $dir_conf
 fi
 chmod 767 $dir_conf
