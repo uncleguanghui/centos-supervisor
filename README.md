@@ -53,7 +53,7 @@ supervisor配置文件通常命名为`supervisord.conf`。它被 supervisord 和
 ## 部署
 
 ```
-sh deploy.sh
+sh deploy_centos.sh
 ```
 
 # 其他命令
