@@ -16,7 +16,7 @@ cd centos-supehvisor
 ```
 .
 ├── README.md
-├── deploy.sh  # 部署脚本
+├── deploy_centos.sh  # 部署脚本
 ├── supervisord.conf  # supervisor配置
 └── supervisord.service  # 系统开机启动配置
 
