@@ -8,7 +8,7 @@
 
 ```
 git clone https://github.com/uncleguanghui/centos-supervisor.git
-cd centos-supehvisor
+cd centos-supervisor
 ```
 
 进来后可以看到
