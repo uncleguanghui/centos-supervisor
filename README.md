@@ -7,7 +7,7 @@
 ## clone
 
 ```
-git clone https://github.com/uncleguanghui/supervisor.git
+git clone https://github.com/uncleguanghui/centos-supervisor.git
 cd centos-supehvisor
 ```
 
