@@ -5,6 +5,7 @@
 dir_parent=$(cd `dirname $0`;pwd)
 conf_supervisor=$dir_parent/supervisord.conf
 conf_start=$dir_parent/supervisord.service
+conf_start_new=$dir_parent/supervisord_new.service
 
 # etc目录
 dir_conf=/etc/supervisor/config.d
@@ -40,23 +41,25 @@ fi
 chmod 767 $dir_conf
 
 # 复制配置
-if [ ! -f "$target_conf" ]; then
-    cp $conf_supervisor  $target_conf
+if [ -f "$target_conf" ]; then
+    rm -rf $target_conf
 fi
+cp $conf_supervisor  $target_conf
 
 # ########################## 设置启动 ##########################
 
 # 设置开机自启动
 supervisord=$(which supervisord)
 supervisorctl=$(which supervisorctl)
-if [ ! -f "$target_start" ]; then
-    # 替换字符串
-    sed -i -e 's#=supervisord#='${supervisord}'#g' $conf_start
-    sed -i -e 's#=supervisorctl#='${supervisorctl}'#g' $conf_start
-    cp $conf_start $target_start
-    chmod 644 $target_start
-
+if [ -f "$target_start" ]; then
+    rm -rf $target_start
 fi
+# 替换字符串
+sed -i -e 's#=supervisord#='${supervisord}'#g' $conf_start > $conf_start_new
+sed -i -e 's#=supervisorctl#='${supervisorctl}'#g' conf_start_new
+mv $conf_start_new $target_start
+chmod 644 $target_start
+systemctl daemon-reload
 systemctl enable supervisord.service
 systemctl start supervisord.service
 
