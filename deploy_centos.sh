@@ -16,6 +16,9 @@ target_start=/usr/lib/systemd/system/supervisord.service
 # ########################## 关闭服务 ##########################
 
 # 若服务启动，则杀死
+if [ -f "$target_start" ]; then
+    systemctl stop supervisord.service
+fi
 for pid in $(pidof -x supervisord); do
     if [ $pid != $$ ]; then
         echo "[$(date)] : supervisord : 程序正在运行， PID $pid"
@@ -44,9 +47,15 @@ fi
 # ########################## 设置启动 ##########################
 
 # 设置开机自启动
+supervisord=$(which supervisord)
+supervisorctl=$(which supervisorctl)
 if [ ! -f "$target_start" ]; then
+    # 替换字符串
+    sed -i -e 's#=supervisord#='${supervisord}'#g' $conf_start
+    sed -i -e 's#=supervisorctl#='${supervisorctl}'#g' $conf_start
     cp $conf_start $target_start
     chmod 644 $target_start
+
 fi
 systemctl enable supervisord.service
 systemctl start supervisord.service
