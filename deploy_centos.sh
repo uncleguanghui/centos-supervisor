@@ -55,7 +55,7 @@ if [ -f "$target_start" ]; then
     rm -rf $target_start
 fi
 # 替换字符串
-sed -i -e 's#=supervisord#='${supervisord}'#g' $conf_start > $conf_start_new
+sed -e 's#=supervisord#='${supervisord}'#g' $conf_start > $conf_start_new
 sed -i -e 's#=supervisorctl#='${supervisorctl}'#g' $conf_start_new
 mv $conf_start_new $target_start
 chmod 644 $target_start
